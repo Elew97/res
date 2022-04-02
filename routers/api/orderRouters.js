@@ -126,33 +126,88 @@ router.post("/orderDetail", (request, response) => {
     })
 })
 //删除订单(先判断该订单是否存在)
-router.post("/orderDel", (req, res) => {
-    const sql = `select * from u_order where o_id = '${req.body_id}'`
-    conn.query(sql, (error, result, field) => {
-        if (error) {
-            res.status(404).json({
-                msg: 'filed'
+router.post("/orderDel", (request, response) => {
+    const sql = `select * from u_order where o_id = '${request.body.id}'`
+    db.dataControl(sql,(req,res)=>{
+        if(req.status ==false){
+            return response.send({
+                msg: req.msg
             })
-        } else {
-            if (result.length <= 0) {
-                res.status(400).json({
-                    msg: '订单不存在'
+        }else{
+            if(request.body.length<=0){
+                response.status(400).json({
+                    msg:'订单不存在'
                 })
-            } else {
-                const sql = `delete from u_order where o_id ='${req.body.id}' `
-                conn.query(sql, (error, result, filed) => {
-                    if (error) {
-                        res.status(404).json({
-                            msg: '删除失败'
+            }else{
+                const sql = `delete from u_order where o_id ='${request.body.id}' `
+                db.dataControl(sql,(req,res)=>{
+                    if(req.status ==false){
+                        return response.send({
+                            msg: req.msg
                         })
-                    } else {
-                        res.status(200).json({
-                            msg: "success",
+                    }else{
+                        response.status(200).json({
+                            msg:'success'
                         })
                     }
                 })
             }
         }
     })
+    // conn.query(sql, (error, result, field) => {
+    //     if (error) {
+    //         res.status(404).json({
+    //             msg: 'filed'
+    //         })
+    //     } else {
+    //         if (result.length <= 0) {
+    //             res.status(400).json({
+    //                 msg: '订单不存在'
+    //             })
+    //         } else {
+    //             const sql = `delete from u_order where o_id ='${req.body.id}' `
+    //             conn.query(sql, (error, result, filed) => {
+    //                 if (error) {
+    //                     res.status(404).json({
+    //                         msg: '删除失败'
+    //                     })
+    //                 } else {
+    //                     res.status(200).json({
+    //                         msg: "success",
+    //                     })
+    //                 }
+    //             })
+    //         }
+    //     }
+    // })
 })
+// router.post("/orderDel", (req, res) => {
+//     const sql = `select * from u_order where o_id = '${req.body_id}'`
+//     conn.query(sql, (error, result, field) => {
+//         if (error) {
+//             res.status(404).json({
+//                 msg: 'filed'
+//             })
+//         } else {
+//             if (result.length <= 0) {
+//                 res.status(400).json({
+//                     msg: '订单不存在'
+//                 })
+//             } else {
+//                 const sql = `delete from u_order where o_id ='${req.body.id}' `
+//                 conn.query(sql, (error, result, filed) => {
+//                     if (error) {
+//                         res.status(404).json({
+//                             msg: '删除失败'
+//                         })
+//                     } else {
+//                         res.status(200).json({
+//                             msg: "success",
+//                         })
+//                     }
+//                 })
+//             }
+//         }
+//     })
+// })
 module.exports = router

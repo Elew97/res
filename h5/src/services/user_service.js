@@ -28,11 +28,35 @@ function getOrderDetail(data){
         data
     })
 }
-
+//取消订单
+function cancelOrder(data){
+    return axios({
+        url:'/api/users/orderDel',
+        method:"post",
+        data
+    })
+}
+function userLogin(data){
+    return axios({
+        url:'/api/admin/login',
+        method:"post",
+        data
+    })
+}
+function userRegister(data){
+    return axios({
+        url:'/api/admin/register',
+        method:"post",
+        data
+    })
+}
 export default{
     getUserInfo,
     getOrderList,
     getFoodsList,
-    getOrderDetail
+    getOrderDetail,
+    cancelOrder,
+    userLogin,
+    userRegister
 }
 

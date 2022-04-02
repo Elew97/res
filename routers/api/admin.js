@@ -13,7 +13,7 @@ router.get('/test', (req, resp) => {
 
 //register
 router.post("/register", (request, response) => {
-    const sql = "select * from user where user_name ='" + request.body.user_name + "'"
+    const sql = "select * from u_user where name ='" + request.body.user_name + "'"
     db.dataControl(sql, (req, res) => {
         if (req.status == false) {
             response.send({
@@ -31,7 +31,7 @@ router.post("/register", (request, response) => {
                     bcrypt.hash(request.body.password, salt, function (err, hash) {
                         if (err) throw err
                         const bcryptPassword = hash
-                        const sql = `insert into user (user_name, password, status) values ('${request.body.user_name}', '${bcryptPassword}', '${request.body.status}')`;
+                        const sql = `insert into u_user (name, password) values ('${request.body.user_name}', '${bcryptPassword}')`;
                         db.dataControl(sql, function (req, res) {
                             if (req.status == false) {
                                 response.send({
@@ -56,10 +56,9 @@ router.post("/login", (request, response) => {
         user_name,
         password: pwd
     } = request.body
-    const sql = `select* from user where user_name='${request.body.user_name}'`
+    const sql = `select* from u_user where name='${request.body.user_name}'`
     db.dataControl(sql, (req, res) => {
         if (req.status==false) {
-            console.log(req);
             response.json({
                 status:2,msg:req.msg
             })
@@ -76,7 +75,8 @@ router.post("/login", (request, response) => {
                         response.status(200).json({
                             msg: 'success',
                             // token
-                            token: 'Bearer ' + token
+                            token: 'Bearer ' + token,
+                            data:req.data
                         })
                     })
                     // response.json({msg:'success'})

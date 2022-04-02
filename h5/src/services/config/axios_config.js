@@ -43,7 +43,6 @@ export default function axiosSerivce(options){
                 if(!err.response){
                     return Promise.reject(err); // 返回接口返回的错误信息
                 }
-                console.log(err,'llll')
                 //根据后端返回的状态码进行判断
                 switch (err.response.status) {
                     case 401:

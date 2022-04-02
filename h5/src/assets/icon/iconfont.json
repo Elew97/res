@@ -1,0 +1,65 @@
+{
+  "id": "3030496",
+  "name": "res",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "餐馆订餐管理系统",
+  "glyphs": [
+    {
+      "icon_id": "1167200",
+      "name": "已付款",
+      "font_class": "yifukuan",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "91807",
+      "name": "待发货",
+      "font_class": "daifahuo",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1301370",
+      "name": "评价",
+      "font_class": "pingjia",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "2811145",
+      "name": "待付款",
+      "font_class": "daifukuan",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "6048137",
+      "name": "购买记录",
+      "font_class": "goumaijilu",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "9596388",
+      "name": "修改个人信息",
+      "font_class": "xiugaigerenxinxi",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "11372694",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e8b7",
+      "unicode_decimal": 59575
+    },
+    {
+      "icon_id": "13543875",
+      "name": "我的收藏",
+      "font_class": "wodeshoucang",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    }
+  ]
+}

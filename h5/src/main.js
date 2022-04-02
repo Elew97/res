@@ -7,6 +7,7 @@ import 'vant/lib/index.css'
 import api from '@/services/index.js'
 import './permission.js'
 import topBar from '@/components/topBar.vue'
+import './assets/icon/iconfont.css'
 let app = createApp(App)
 app.use(vant)
 //将api挂载到vue实例
