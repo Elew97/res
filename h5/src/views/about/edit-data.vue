@@ -7,7 +7,7 @@
       <div class="header-icon mr10">
             <img src="@/assets/img/icon.jpg" />
       </div>
-      <div class="edit-data-ipt">
+      <!-- <div class="edit-data-ipt">
             <van-field
                 v-model="password"
                 type="password"
@@ -16,7 +16,7 @@
                 required
                 class="edit-data-ipt__password"
             />
-        </div>
+        </div> -->
        <div class="edit-data-ipt">
             <van-field
                 v-model="password"
@@ -39,7 +39,7 @@
         </div>
         <div class="edit-data-ipt">
             <van-field
-                v-model="password2"
+                v-model="password3"
                 type="password"
                 label="验证密码"
                 placeholder="请再次输入新密码"
@@ -57,7 +57,9 @@
 export default {
 data(){
     return{
-
+        password:'',
+        password2:'',
+        password3:''
     }
 },
 methods:{
@@ -65,7 +67,7 @@ methods:{
         this.$router.back()
     },
     save(){
-        this.$router.push({name:'about'})
+        this.$router.push({name:'login'})
     }
 }
 }

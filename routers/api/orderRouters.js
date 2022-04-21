@@ -181,6 +181,51 @@ router.post("/orderDel", (request, response) => {
     //     }
     // })
 })
+router.post("/collected",(request,response)=>{
+    const sql =`insert into favorite (u_id,food_id) values('${request.body.user_id}','${request.body.food_id}')`
+    db.dataControl(sql, (req, res) => {
+        if (req.status == false) {
+            response.status(400).json({
+                msg: '收藏失败',
+            })
+        } else {
+                response.status(200).json({
+                msg: "success",
+            })
+        }
+    })
+
+})
+router.post("/unCollected",(request,response)=>{
+    const sql = `delete from favorite where id='${request.body.id}'`
+    db.dataControl(sql,(req,res)=>{
+        if(req.status ==false){
+            return response.send({
+                msg: req.msg
+            })
+        }else{
+            response.status(200).json({
+                msg:'success'
+            })
+        }
+    })
+})
+router.get("/collectedList",(request,response)=>{
+    const sql = `select * from  favorite a join u_user b on a.u_id = b.u_id join foods c on a.food_id=c.id where b.u_id='${request.query.id}'`
+    db.dataControl(sql, (req, res) => {
+        if (req.status == false) {
+            response.status(400).json({
+                msg: 'error',
+            })
+        } else {
+                response.status(200).json({
+                    msg: "success",
+                    data: req.data
+                })
+        }
+    })
+
+})
 // router.post("/orderDel", (req, res) => {
 //     const sql = `select * from u_order where o_id = '${req.body_id}'`
 //     conn.query(sql, (error, result, field) => {
@@ -210,4 +255,64 @@ router.post("/orderDel", (request, response) => {
 //         }
 //     })
 // })
+
+router.post("/updateInfo",(request,response)=>{
+    const {id,oldPassword,newPassword} = request.body
+    const sql = `select password from u_user where u_id='${id}'`
+    db.dataControl(sql,(req,res)=>{
+        if(req.status==false){
+            response.status(400).json({
+                msg: 'error',
+            })
+        }else{
+            if(req.data.length<=0){
+                response.status(400).json({
+                    msg:'用户ID错误'
+                })
+            }else{
+                bcrypt.compare(oldPassword,req.data[0].password).then((isMatch)=>{
+                    if(isMatch){
+                        bcrypt.genSalt(10,(err,salt)=>{
+                            bcrypt.hash(newPassword,salt,(err,hash)=>{
+                                if(err) throw err
+                                const bcryptPassword = hash
+                                const sql = `update u_user set password='${bcryptPassword}'`
+                                db.dataControl(sql,(req,res)=>{
+                                    if(req.status==false){
+                                        response.status(400).json({
+                                            msg: 'error',
+                                        })
+                                    }else{
+                                        response.status(200).json({
+                                            msg:'修改成功'
+                                        })
+                                    }
+                                })
+                            })
+                            
+                            
+                        })
+                       
+                    }else{
+                        response.status(400).json({
+                            msg:'原密码错误'
+                        })
+                    }
+                })
+            }
+        }
+    })
+    // if(request.body.password!=request.body.password)
+    // db.dataControl(sql,(req,res)=>{
+    //     if(req.status ==false){
+    //         return response.send({
+    //             msg: req.msg
+    //         })
+    //     }else{
+    //         response.status(200).json({
+    //             msg:'success'
+    //         })
+    //     }
+    // })
+})
 module.exports = router

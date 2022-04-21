@@ -1,8 +1,14 @@
 export const constantRouteMap = [
+
 	{
-		path: '/',
+		path:'/',
+		component:()=> import('@/views/login.vue'),
+		redirect:'/login'
+	},
+	{
+		path: '/index',
 		component: () => import('@/views/index.vue'),
-		redirect: '/home',
+		index: 'index',
 		children: [{
 				path: '/home',
 				name: 'home',
@@ -29,17 +35,37 @@ export const constantRouteMap = [
 	{
 		path: '/register',
 		name: 'Register',
-		component: () => import('../register.vue')
-	  },
-	  {
+		component: () => import('@/views/register.vue')
+	},
+	{
 		path: '/login',
 		name: 'Login',
-		component: () => import('../login.vue')
-	  },
-	  {
+		component: () => import('@/views/login.vue')
+	},
+	{
 		path: '/edit-data',
 		name: 'EditData',
 		component: () => import('@/views/about/edit-data.vue')
+	},
+	{
+		path: '/allOrders',
+		name: 'allOrders',
+		component: () => import('@/views/about/all-orders.vue')
+	},
+	{
+		path: '/paid',
+		name: 'paid',
+		component: () => import('@/views/about/paid.vue')
+	},
+	{
+		path: '/unpaid',
+		name: 'unpaid',
+		component: () => import('@/views/about/unpaid.vue')
+	},
+	{
+		path: '/collected',
+		name: 'collected',
+		component: () => import('@/views/about/collected.vue')
 	},
 
 ]

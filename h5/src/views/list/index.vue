@@ -27,6 +27,8 @@ export default {
   methods: {
     getFoodsData() {
       this.$api.getFoodsList().then((res) => {
+        console.log(111111)
+        console.log(res)
         this.list = res.data.data;
       });
     },

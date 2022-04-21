@@ -13,44 +13,37 @@
 					<span class="ml10">我的订单</span>
 				</div>
 				<div class="right">
-					<a href="javascript:;">查看全部订单></a>
+					<a href="javascript:;" @click.native="viewAll">查看全部订单></a>
 				</div>
 			</div>
 			<div class="middle-content__bottom">
-				<div class="content-item">
+				<div class="content-item" @click.native="paid">
 					<div class="icon"><span class="iconfont icon-yifukuan"></span></div>
-					<div>已付款</div>
+					<div>已确认</div>
 				</div>
-				<div class="content-item">
+				<!-- <div class="content-item">
 					<div class="icon"><span class="iconfont icon-pingjia"></span></div>
 					<div>待评价</div>
-				</div>
+				</div> -->
 				<!-- <div class="content-item">
 					<div class="icon">icon</div>
 					<div>待送餐</div>
 				</div> -->
-				<div class="content-item">
+				<div class="content-item" @click.native="unpaid">
 					<div class="icon"><span class="iconfont icon-daifukuan"></span></div>
-					<div>待付款</div>
+					<div>待确认</div>
 				</div>
 			</div>
 		</div>
 		<div class="bottom-content">
 			<ul>
-				<li>
-					<div class="bottom-content__left">
-						<span class="iconfont icon-goumaijilu"></span>
-						<span class="ml20">购买记录</span>
-					</div>
-					<div class="bottom-content__right">></div>
-				</li>
-				<li>
+				<!-- <li @click.native="collected">
 					<div class="bottom-content__left">
 						<span class="iconfont icon-wodeshoucang"></span>
 						<span class="ml20">已收藏</span>
 					</div>
 					<div class="bottom-content__right">></div>
-				</li>
+				</li> -->
 				<!-- <li>
 					<div class="bottom-content__left">
 						<span>icon</span>
@@ -58,13 +51,13 @@
 					</div>
 					<div class="bottom-content__right">></div>
 				</li> -->
-				<li>
-					<div class="bottom-content__left" @click.native="edit">
+				<!-- <li @click.native="edit">
+					<div class="bottom-content__left">
 						<span class="iconfont icon-xiugaigerenxinxi"></span>
 						<span class="ml20">修改个人资料</span>
 					</div>
 					<div class="bottom-content__right">></div>
-				</li>
+				</li> -->
 				<li>
 					<div class="bottom-content__left" @click="exit">
 						<span class="iconfont icon-shezhi"></span>
@@ -89,12 +82,23 @@ export default {
 	mounted() { },
 
 	methods: {
+		viewAll(){
+			this.$router.push({name:'allOrders'})
+		},
+		paid(){
+			this.$router.push({name:'paid'})
+		},
+		unpaid(){
+			this.$router.push({name:'unpaid'})
+		},
+		collected(){
+			this.$router.push({name:'collected'})
+		},
 		edit(){
 			this.$router.push({name:'EditData'})
 		},
 		exit(){
 			this.$router.push({name:'Login'})
-			console.log(11)
 		}
 	}
 }

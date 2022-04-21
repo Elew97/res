@@ -49,6 +49,9 @@
 											<van-icon class="plus" name="plus" @click="edit(item, item.sales, '1')" />
 										</p>
 									</div>
+									<!-- <div :class="'status--'+item.status" class="collected">
+										<span class="iconfont icon-wodeshoucang"></span>
+									</div> -->
 								</div>
 							</li>
 						</ul>
@@ -285,6 +288,12 @@ input {
 	position: absolute;
 	right: 0;
 	bottom: 0;
+}
+.collected{
+	margin-top: 20px;
+}
+.status--1 {
+	color: #fd3f31;
 }
 </style>
 

@@ -125,7 +125,7 @@ router.post("/submenu", (request, response) => {
             })
         })
         for (let i=0; i < nameList.length; i++) {
-            let sqlName = `select a.id,a.img_url,a.price,a.food_name,a.description,a.sales from foods a inner join foods_type b on  a.parent_id =b.id where a.parent_id='${nameList[i].id}'`
+            let sqlName = `select a.id,a.img_url,a.price,a.food_name,a.description,a.sales from foods a inner join foods_type b on  a.type =b.id where a.type='${nameList[i].id}'`
             db.dataControl(sqlName, (req, res) => {
                 nameList[i].data=req.data
                 if(nameList[nameList.length-1].data.length>0){
